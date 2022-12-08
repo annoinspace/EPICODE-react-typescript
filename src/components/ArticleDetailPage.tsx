@@ -38,8 +38,10 @@ export default function ArticleDetailPage() {
 
   return (
     <>
-      <div>{articleDetail && <h1>{articleDetail.title}</h1>}</div>
-      {/* <div>{articleDetail && <SingleArticleCard id={params.id} />}</div> */}
+      {/* <div>{articleDetail && <h1>{articleDetail.title}</h1>}</div> */}
+      <div>
+        {articleDetail && <SingleArticleCard articledetail={articleDetail} />}
+      </div>
     </>
   )
 }

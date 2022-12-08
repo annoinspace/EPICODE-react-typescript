@@ -3,16 +3,29 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import { NewsArticle } from "../types"
 
 interface SingleNewsArticleProps {
-  article: NewsArticle
+  articledetail: NewsArticle
+  // id: number
+  // title: string
+  // url: string
+  // imageUrl: string
+  // newsSite: string
+  // summary: string
+  // publishedAt: Date
+  // updatedAt: Date
+  // featured: boolean
+  // launches: any[]
+  // events: any[]
 }
 
-export default function SingleArticleCard({ article }: SingleNewsArticleProps) {
+export default function SingleArticleCard({
+  articledetail
+}: SingleNewsArticleProps) {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={article.imageUrl} />
+      <Card.Img variant="top" src={articledetail.imageUrl} />
       <Card.Body>
-        <Card.Title>{article.title}</Card.Title>
-        <Card.Text>{article.summary}</Card.Text>
+        <Card.Title>{articledetail.title}</Card.Title>
+        <Card.Text>{articledetail.summary}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroupItem>Cras justo odio</ListGroupItem>
