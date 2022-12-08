@@ -1,7 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react"
 import { NewsArticle } from "../types"
-import { Jumbotron } from "react-bootstrap"
 import Article from "./Article"
 
 // in this page we will fetch the articles from the api to display on the main page
@@ -33,14 +32,6 @@ export default function MainPage() {
 
   return (
     <>
-      <Jumbotron>
-        <h1>Spaceflight News</h1>
-        <p>Just more propaganda for those who're interested</p>
-        {/* <p>
-          <Button bsStyle="primary">Learn more</Button>
-        </p> */}
-      </Jumbotron>
-
       <div className="d-flex justify-content-around flex-wrap m-5">
         {newsArticles.map((article) => (
           <Article article={article} key={article.id} />
