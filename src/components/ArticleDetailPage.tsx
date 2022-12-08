@@ -1,34 +1,47 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+
 import { useParams } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { NewsArticle } from "../types"
+import SingleArticleCard from "./SingleArticleCard"
 
 export default function ArticleDetailPage() {
   const params = useParams()
   console.log("---params---", params)
   console.log("---articleid---", params.id)
 
-  const [articleDetail, setArticleDetail] = useState("")
+  const [articleDetail, setArticleDetail] = useState<NewsArticle[]>([])
+
+  //fetch the details for the specific article
+
+  useEffect(() => {
+    fetchSingleArticle()
+  }, [])
+
+  const fetchSingleArticle = async () => {
+    try {
+      let response = await fetch(
+        "https://api.spaceflightnewsapi.net/v3/articles/" + params.id
+      )
+      console.log("---fetching single article----", response)
+      if (response.ok) {
+        let data = await response.json()
+        console.log("---data from single article fetch---", data)
+        setArticleDetail(data)
+        console.log("---single article---", articleDetail)
+      } else {
+        console.log("error from the server")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
+    <div>
+      {articleDetail && (
+        <SingleArticleCard article={articleDetail} key={articleDetail.id} />
+      )}
+    </div>
   )
 }
