@@ -10,7 +10,7 @@ export default function ArticleDetailPage() {
   console.log("---params---", params)
   console.log("---articleid---", params.id)
 
-  const [articleDetail, setArticleDetail] = useState<NewsArticle[]>([])
+  const [articleDetail, setArticleDetail] = useState<NewsArticle | null>(null)
 
   //fetch the details for the specific article
 
@@ -28,7 +28,6 @@ export default function ArticleDetailPage() {
         let data = await response.json()
         console.log("---data from single article fetch---", data)
         setArticleDetail(data)
-        console.log("---single article---", articleDetail)
       } else {
         console.log("error from the server")
       }
@@ -38,10 +37,9 @@ export default function ArticleDetailPage() {
   }
 
   return (
-    <div>
-      {articleDetail && (
-        <SingleArticleCard article={articleDetail} key={articleDetail.id} />
-      )}
-    </div>
+    <>
+      <div>{articleDetail && <h1>{articleDetail.title}</h1>}</div>
+      {/* <div>{articleDetail && <SingleArticleCard id={params.id} />}</div> */}
+    </>
   )
 }
