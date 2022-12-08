@@ -1,41 +1,33 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { NewsArticle } from "../types"
 
 interface SingleNewsArticleProps {
-  articledetail: NewsArticle
-  // id: number
-  // title: string
-  // url: string
-  // imageUrl: string
-  // newsSite: string
-  // summary: string
-  // publishedAt: Date
-  // updatedAt: Date
-  // featured: boolean
-  // launches: any[]
-  // events: any[]
+  singleArticleDetail: NewsArticle
 }
 
 export default function SingleArticleCard({
-  articledetail
+  singleArticleDetail
 }: SingleNewsArticleProps) {
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={articledetail.imageUrl} />
-      <Card.Body>
-        <Card.Title>{articledetail.title}</Card.Title>
-        <Card.Text>{articledetail.summary}</Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
+    <div className="d-flex justify-content-center">
+      <Card style={{ width: "55rem" }}>
+        <>
+          {/* <div>First Published {singleArticleDetail.publishedAt}</div> */}
+          {/* <div>First Published: {singleArticleDetail.publishedAt}</div> */}
+        </>
+        <Card.Img variant="top" src={singleArticleDetail.imageUrl} />
+        <Card.Body>
+          <Card.Text>{singleArticleDetail.summary}</Card.Text>
+        </Card.Body>
+
+        <Card.Body className="d-flex justify-content-around">
+          <>
+            <div>Card Link</div>
+            <div>Another Link</div>
+          </>
+        </Card.Body>
+      </Card>
+    </div>
   )
 }
